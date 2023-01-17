@@ -1,4 +1,5 @@
 import threading
+import time
 from datetime import datetime
 
 import spidev as SPI
@@ -47,3 +48,5 @@ while not var.quit:
         second = datetime.now().second
 
 disp.clear()
+time.sleep(3)
+disp.reset()
