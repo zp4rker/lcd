@@ -7,6 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 import ST7789
 import listener
+import var
 from util import wrap_lines
 
 # Raspberry Pi pin configuration:
@@ -34,7 +35,11 @@ while True:
     text = "Today is " + date + "\n"
     now = datetime.now().strftime("%H:%M" if blink else "%H %M")
     text += "It is currently " + now + "\n"
+    if var.last_press:
+        text += "Last key: " + var.last_press + "\n"
+
     draw.multiline_text((0, 0), text=wrap_lines(text, font, disp.width), font=font, fill="WHITE")
     disp.ShowImage(base, 0, 0)
+
     blink = not blink
     time.sleep(1)
