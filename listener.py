@@ -28,6 +28,7 @@ def listen():
     GPIO.setup(KEY3_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     while True:
+        press = False
         if not GPIO.input(KEY_UP_PIN):
             if var.standby:
                 var.standby = False
@@ -36,7 +37,7 @@ def listen():
                 print("KEY_UP")
                 var.last_press = "KEY_UP"
                 var.last_active = datetime.now()
-                time.sleep(0.3)
+            press = True
 
         if not GPIO.input(KEY_RIGHT_PIN):
             if var.standby:
@@ -46,7 +47,7 @@ def listen():
                 print("KEY_RIGHT")
                 var.last_press = "KEY_RIGHT"
                 var.last_active = datetime.now()
-                time.sleep(0.3)
+            press = True
 
         if not GPIO.input(KEY_DOWN_PIN):
             if var.standby:
@@ -56,7 +57,7 @@ def listen():
                 print("KEY_DOWN")
                 var.last_press = "KEY_DOWN"
                 var.last_active = datetime.now()
-                time.sleep(0.3)
+            press = True
 
         if not GPIO.input(KEY_LEFT_PIN):
             if var.standby:
@@ -66,7 +67,7 @@ def listen():
                 print("KEY_LEFT")
                 var.last_press = "KEY_LEFT"
                 var.last_active = datetime.now()
-                time.sleep(0.3)
+            press = True
 
         if not GPIO.input(KEY_PRESS_PIN):
             if var.standby:
@@ -76,7 +77,7 @@ def listen():
                 print("KEY_PRESS")
                 var.last_press = "KEY_PRESS"
                 var.last_active = datetime.now()
-                time.sleep(0.3)
+            press = True
 
         if not GPIO.input(KEY1_PIN):
             if var.standby:
@@ -86,7 +87,7 @@ def listen():
                 print("KEY1")
                 var.last_press = "KEY1"
                 var.last_active = datetime.now()
-                time.sleep(0.3)
+            press = True
 
         if not GPIO.input(KEY2_PIN):
             if var.standby:
@@ -96,7 +97,7 @@ def listen():
                 print("KEY2")
                 var.last_press = "KEY2"
                 var.last_active = datetime.now()
-                time.sleep(0.3)
+            press = True
 
         if not GPIO.input(KEY3_PIN):
             if var.standby:
@@ -106,6 +107,9 @@ def listen():
                 print("KEY3")
                 var.last_press = "KEY3"
                 var.last_active = datetime.now()
-                time.sleep(0.3)
                 var.quitting = True
                 quit()
+            press = True
+
+        if press:
+            time.sleep(0.3)

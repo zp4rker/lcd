@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 import ST7789
 import listener
+import screens.menu
 import standby
 import var
 from util import wrap_lines
@@ -33,6 +34,8 @@ listener_thread.start()
 standby_thread = threading.Thread(target=standby.watch, name="Standby Thread")
 standby_thread.start()
 
+var.cur_screen = screens.menu.show
+
 while not var.quitting:
     base = Image.new("RGB", (disp.width, disp.height), "BLACK")
 
@@ -40,21 +43,22 @@ while not var.quitting:
         disp.ShowImage(base, 0, 0)
         continue
 
-    draw = ImageDraw.Draw(base)
-
-    date = datetime.now().strftime("%a, %-d %b %y")
-    text = "Today is " + date + "\n"
-    now = datetime.now().strftime("%H:%M" if blink else "%H %M")
-    text += "It is currently " + now + "\n"
-    text += "Press KEY3 to exit\n"
-    if var.last_press:
-        text += "Last key: " + var.last_press + "\n"
-
-    draw.multiline_text((0, 0), text=wrap_lines(text, font, disp.width), font=font, fill="WHITE")
-    disp.ShowImage(base, 0, 0)
-
-    if datetime.now().second != second:
-        blink = not blink
-        second = datetime.now().second
+    # draw = ImageDraw.Draw(base)
+    #
+    # date = datetime.now().strftime("%a, %-d %b %y")
+    # text = "Today is " + date + "\n"
+    # now = datetime.now().strftime("%H:%M" if blink else "%H %M")
+    # text += "It is currently " + now + "\n"
+    # text += "Press KEY3 to exit\n"
+    # if var.last_press:
+    #     text += "Last key: " + var.last_press + "\n"
+    #
+    # draw.multiline_text((0, 0), text=wrap_lines(text, font, disp.width), font=font, fill="WHITE")
+    # disp.ShowImage(base, 0, 0)
+    #
+    # if datetime.now().second != second:
+    #     blink = not blink
+    #     second = datetime.now().second
+    disp.ShowImage(var.cur_screen())
 
 disp.clear()

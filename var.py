@@ -1,4 +1,5 @@
 display = None
+cur_screen = None
 
 last_press = None
 
