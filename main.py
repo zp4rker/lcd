@@ -36,6 +36,7 @@ while True:
     text = "Today is " + date + "\n"
     now = datetime.now().strftime("%H:%M" if blink else "%H %M")
     text += "It is currently " + now + "\n"
+    text += "Press KEY3 to exit\n"
     if var.last_press:
         text += "Last key: " + var.last_press + "\n"
 
