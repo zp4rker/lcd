@@ -1,4 +1,3 @@
-import sys
 import time
 
 import RPi.GPIO as GPIO
@@ -67,4 +66,5 @@ def listen():
             print("KEY3")
             var.last_press = "KEY3"
             time.sleep(0.3)
-            sys.exit(0)
+            var.quit = True
+            quit()
