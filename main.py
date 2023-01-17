@@ -34,10 +34,12 @@ standby_thread = threading.Thread(target=standby.watch, name="Standby Thread")
 standby_thread.start()
 
 while not var.quitting:
+    base = Image.new("RGB", (disp.width, disp.height), "BLACK")
+
     if var.standby:
+        disp.ShowImage(base, 0, 0)
         continue
 
-    base = Image.new("RGB", (disp.width, disp.height), "BLACK")
     draw = ImageDraw.Draw(base)
 
     date = datetime.now().strftime("%a, %-d %b %y")

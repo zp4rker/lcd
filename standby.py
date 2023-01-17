@@ -5,13 +5,17 @@ import var
 
 
 def watch():
+    if not var.last_active:
+        var.last_active = datetime.now()
+
     while not var.quitting:
         if not var.last_active:
             continue
 
-        if (datetime.now() - var.last_active).total_seconds() < 30:
+        if (datetime.now() - var.last_active).total_seconds() < 15:
             continue
 
-        var.display.clear()
-        var.standby = True
-        time.sleep(30)
+        if not var.standby:
+            var.standby = True
+            var.display.clear()
+            time.sleep(15)
