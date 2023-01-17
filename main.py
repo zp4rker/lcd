@@ -23,6 +23,7 @@ disp.clear()
 
 font = ImageFont.truetype("JetBrainsMono.ttf", size=16)
 blink = True
+second = datetime.now().second
 
 listener_thread = threading.Thread(target=listener.listen, name="Listener Thread")
 listener_thread.start()
@@ -41,5 +42,6 @@ while True:
     draw.multiline_text((0, 0), text=wrap_lines(text, font, disp.width), font=font, fill="WHITE")
     disp.ShowImage(base, 0, 0)
 
-    blink = not blink
-    time.sleep(1)
+    if datetime.now().second != second:
+        blink = not blink
+        second = datetime.now().second
