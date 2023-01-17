@@ -24,7 +24,7 @@ disp.clear()
 font = ImageFont.truetype("JetBrainsMono.ttf", size=16)
 blink = True
 
-asyncio.run(listener.listen())
+listener.listen()
 
 while True:
     base = Image.new("RGB", (disp.width, disp.height), "BLACK")
