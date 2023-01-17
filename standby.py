@@ -1,10 +1,11 @@
 import time
 from datetime import datetime
 
+import main
 import var
 
 
-def watch(display):
+def watch():
     while not var.quitting:
         if not var.last_active:
             continue
@@ -12,6 +13,6 @@ def watch(display):
         if (datetime.now() - var.last_active).total_seconds() < 30:
             continue
 
-        display.clear()
+        main.disp.clear()
         var.standby = True
         time.sleep(30)

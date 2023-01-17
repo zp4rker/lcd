@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 import ST7789
 import listener
+import standby
 import var
 from util import wrap_lines
 
@@ -26,6 +27,9 @@ second = datetime.now().second
 
 listener_thread = threading.Thread(target=listener.listen, name="Listener Thread")
 listener_thread.start()
+
+standby_thread = threading.Thread(target=standby.watch, name="Standby Thread")
+standby_thread.start()
 
 while not var.quitting:
     if var.standby:
