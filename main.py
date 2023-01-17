@@ -45,3 +45,5 @@ while not var.quit:
     if datetime.now().second != second:
         blink = not blink
         second = datetime.now().second
+        
+disp.reset()
