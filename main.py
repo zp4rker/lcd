@@ -59,6 +59,6 @@ while not var.quitting:
     # if datetime.now().second != second:
     #     blink = not blink
     #     second = datetime.now().second
-    disp.ShowImage(var.cur_screen())
+    disp.ShowImage(var.cur_screen(), 0, 0)
 
 disp.clear()
