@@ -27,32 +27,32 @@ def listen():
     while True:
         if not GPIO.input(KEY_UP_PIN):
             print("KEY_UP")
-            time.sleep(0.1)
+            time.sleep(0.3)
 
         if not GPIO.input(KEY_RIGHT_PIN):
             print("KEY_RIGHT")
-            time.sleep(0.1)
+            time.sleep(0.3)
 
         if not GPIO.input(KEY_DOWN_PIN):
             print("KEY_DOWN")
-            time.sleep(0.1)
+            time.sleep(0.3)
 
         if not GPIO.input(KEY_LEFT_PIN):
             print("KEY_LEFT")
-            time.sleep(0.1)
+            time.sleep(0.3)
 
         if not GPIO.input(KEY_PRESS_PIN):
             print("KEY_PRESS")
-            time.sleep(0.1)
+            time.sleep(0.3)
 
         if not GPIO.input(KEY1_PIN):
             print("KEY1")
-            time.sleep(0.1)
+            time.sleep(0.3)
 
         if not GPIO.input(KEY2_PIN):
             print("KEY2")
-            time.sleep(0.1)
+            time.sleep(0.3)
 
         if not GPIO.input(KEY3_PIN):
             print("KEY3")
-            time.sleep(0.1)
+            time.sleep(0.3)
