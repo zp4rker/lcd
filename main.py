@@ -47,4 +47,3 @@ while not var.quit:
         second = datetime.now().second
 
 disp.clear()
-disp.reset()
