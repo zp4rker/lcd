@@ -1,2 +1,6 @@
 last_press = None
-quit = False
+
+quitting = False
+
+standby = False
+last_active = None

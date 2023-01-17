@@ -1,5 +1,4 @@
 import threading
-import time
 from datetime import datetime
 
 import spidev as SPI
@@ -28,7 +27,10 @@ second = datetime.now().second
 listener_thread = threading.Thread(target=listener.listen, name="Listener Thread")
 listener_thread.start()
 
-while not var.quit:
+while not var.quitting:
+    if var.standby:
+        continue
+
     base = Image.new("RGB", (disp.width, disp.height), "BLACK")
     draw = ImageDraw.Draw(base)
 
@@ -48,5 +50,3 @@ while not var.quit:
         second = datetime.now().second
 
 disp.clear()
-time.sleep(3)
-disp.reset()
