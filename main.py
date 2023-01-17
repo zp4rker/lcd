@@ -34,8 +34,8 @@ while True:
     text = "Today is " + date + "\n"
     now = datetime.now().strftime("%H:%M" if blink else "%H %M")
     text += "It is currently " + now + "\n"
-    if listener.last_press:
-        text += "Last key: " + listener.last_press
+    # if listener.last_press:
+    #     text += "Last key: " + listener.last_press
 
     draw.multiline_text((0, 0), text=wrap_lines(text, font, disp.width), font=font, fill="WHITE")
     disp.ShowImage(base, 0, 0)
