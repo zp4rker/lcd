@@ -1,12 +1,11 @@
-import asyncio
-
-import spidev as SPI
-import ST7789
+import threading
 import time
-
-from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
 
+import spidev as SPI
+from PIL import Image, ImageDraw, ImageFont
+
+import ST7789
 import listener
 from util import wrap_lines
 
@@ -24,7 +23,8 @@ disp.clear()
 font = ImageFont.truetype("JetBrainsMono.ttf", size=16)
 blink = True
 
-await listener.listen()
+listener_thread = threading.Thread(target=listener.listen, name="Listener Thread")
+listener_thread.start()
 
 while True:
     base = Image.new("RGB", (disp.width, disp.height), "BLACK")

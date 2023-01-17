@@ -11,7 +11,7 @@ KEY2_PIN = 20
 KEY3_PIN = 16
 
 
-async def listen():
+def listen():
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(KEY_UP_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(KEY_RIGHT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
