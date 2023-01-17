@@ -1,9 +1,13 @@
+import asyncio
+
 import spidev as SPI
 import ST7789
 import time
 
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
+
+import listener
 from util import wrap_lines
 
 # Raspberry Pi pin configuration:
@@ -19,6 +23,8 @@ disp.clear()
 
 font = ImageFont.truetype("JetBrainsMono.ttf", size=16)
 blink = True
+
+asyncio.run(listener.listen())
 
 while True:
     base = Image.new("RGB", (disp.width, disp.height), "BLACK")
