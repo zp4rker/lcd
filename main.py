@@ -21,6 +21,8 @@ disp = ST7789.ST7789(SPI.SpiDev(bus, device), RST, DC, BL)
 disp.Init()
 disp.clear()
 
+var.display = disp
+
 font = ImageFont.truetype("JetBrainsMono.ttf", size=16)
 blink = True
 second = datetime.now().second

@@ -1,3 +1,5 @@
+display = None
+
 last_press = None
 
 quitting = False
