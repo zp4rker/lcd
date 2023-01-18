@@ -47,3 +47,4 @@ while not var.quitting:
     disp.ShowImage(var.cur_screen(), 0, 0)
 
 disp.clear()
+disp.ShowImage(Image.new("RGB", (disp.width, disp.height), "BLACK"), 0, 0)

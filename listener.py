@@ -27,7 +27,7 @@ def listen():
     GPIO.setup(KEY2_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(KEY3_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-    while True:
+    while not var.quitting:
         key = None
         if not GPIO.input(KEY_UP_PIN):
             key = "KEY_UP"

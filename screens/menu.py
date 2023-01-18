@@ -55,4 +55,3 @@ def _handle_button(button):
     match button:
         case "Exit application":
             var.quitting = True
-            var.display.clear()
