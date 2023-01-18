@@ -10,6 +10,7 @@ import var
 focus = 0
 buttons = [
     "Restart application",
+    "Restart application with updates",
     "Reboot machine",
 ]
 
@@ -22,7 +23,7 @@ def show():
     timestr = time.strftime("%a %-d %b %Y | " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
     draw.text((5, 215), text=timestr, font=var.font, fill="WHITE")
 
-    for i in range(2):
+    for i in range(3):
         y1 = 20 + (i * 35)
         y2 = 50 + (i * 35)
 
@@ -57,7 +58,10 @@ def _handle_button(button):
     match button:
         case "Restart application":
             var.quitting = True
-            os.system("sh start.sh")
+            os.system("python3 main.py")
+        case "Restart application with updates":
+            var.quitting = True
+            os.system("git reset --hard && git pull && python3 main.py")
         case "Reboot machine":
             var.quitting = True
             os.system("reboot")

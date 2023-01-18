@@ -20,7 +20,7 @@ def show():
     # stats
     text = f"Hostname: {socket.gethostname()} ({socket.gethostbyname(socket.gethostname())})\n"
 
-    draw.multiline_text((10, 20), text=util.wrap_lines(text, var.font, 200), font=var.font, fill="WHITE")
+    draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 
     return base
 
