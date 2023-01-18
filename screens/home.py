@@ -2,6 +2,7 @@ import socket
 import time
 from datetime import datetime
 
+import psutil
 from PIL import Image, ImageDraw
 
 import screens.menu
@@ -18,7 +19,12 @@ def show():
     draw.text((5, 215), text=timestr, font=var.font, fill="WHITE")
 
     # stats
-    text = f"Hostname: {socket.gethostname()} ({socket.gethostbyname(socket.gethostname())})\n"
+    ip = ""
+    for addr in psutil.net_if_addrs()["wlan0"]:
+        if addr.netmask.startswith("255"):
+            ip = addr.address
+            break
+    text = f"IP: {ip}\n"
 
     draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 
