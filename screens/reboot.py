@@ -61,7 +61,7 @@ def _handle_button(button):
             os.system("python3 main.py &")
         case "Update application":
             var.quitting = True
-            os.system("sh start.sh")
+            os.system('runuser -l zp4rker -c "cd /home/zp4rker/lcd && git reset --hard && git pull" && python3 main.py')
         case "Reboot machine":
             var.quitting = True
             os.system("reboot")
