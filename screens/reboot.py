@@ -10,7 +10,7 @@ import var
 focus = 0
 buttons = [
     "Restart application",
-    "Update and restart application",
+    "Update application",
     "Reboot machine",
 ]
 
@@ -59,7 +59,7 @@ def _handle_button(button):
         case "Restart application":
             var.quitting = True
             os.system("python3 main.py &")
-        case "Update and restart application":
+        case "Update application":
             var.quitting = True
             os.system("sh start.sh")
         case "Reboot machine":
