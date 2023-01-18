@@ -50,6 +50,7 @@ def handle(key):
         case "KEY3":
             var.cur_screen = screens.exit.show
             var.cur_handle = screens.exit.handle
+            focus = 0
 
 
 def _handle_button(button):
