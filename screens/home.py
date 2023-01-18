@@ -19,7 +19,7 @@ def show():
     draw.text((5, 215), text=timestr, font=var.font, fill="WHITE")
 
     # stats
-    text = f"Hostname: {socket.gethostname()}"
+    text = f"Hostname: {socket.gethostname()}\n"
     ip = ""
     for addr in psutil.net_if_addrs()["wlan0"]:
         if addr.netmask.startswith("255"):

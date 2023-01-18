@@ -2,6 +2,7 @@ import os
 import time
 from datetime import datetime
 
+import git
 from PIL import Image, ImageDraw
 
 import screens.quit
@@ -61,7 +62,9 @@ def _handle_button(button):
             os.system("python3 main.py &")
         case "Update application":
             var.quitting = True
-            os.system('sh start.sh')
+            repo = git.Repo("./")
+            repo.remotes.origin.pull()
+            os.system("python3 main.py &")
         case "Reboot machine":
             var.quitting = True
             os.system("reboot")
