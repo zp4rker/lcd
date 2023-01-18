@@ -47,12 +47,12 @@ def handle(key):
             if focus < 4:
                 focus += 1
         case "KEY_PRESS":
-            if buttons[focus]:
-                _handle_button(buttons[focus])
+            if 0 <= focus < 5:
+                _handle_button(focus)
 
 
 def _handle_button(button):
     match button:
-        case "Exit application":
+        case 4:
             var.cur_screen = screens.exit.show
             var.cur_handle = screens.exit.handle
