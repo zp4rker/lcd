@@ -6,6 +6,13 @@ from PIL import Image, ImageDraw
 import var
 
 focus = -1
+buttons = [
+        "Button 1",
+        "Button 2",
+        "Button 3",
+        "Button 4",
+        "Exit application"
+    ]
 
 
 def show():
@@ -22,9 +29,10 @@ def show():
         outline = "BLACK" if focus == i else "WHITE"
 
         draw.rectangle([20, y1, 220, y2], fill=fill, outline=outline)
-        draw.text((25, y1 + 5), text=f"Button {i}", font=var.font, fill=outline)
+        draw.text((25, y1 + 5), text=buttons[i], font=var.font, fill=outline)
 
-    draw.text((5, 215), text=time.strftime("%H:%M:%S").format(datetime.now()), font=var.font, fill="WHITE")
+    timestr = time.strftime("%a %-d %b %Y | " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
+    draw.text((5, 215), text=timestr, font=var.font, fill="WHITE")
 
     return base
 
@@ -38,3 +46,13 @@ def handle(key):
         case "KEY_DOWN":
             if focus < 4:
                 focus += 1
+        case "KEY_PRESS":
+            if buttons[focus]:
+                _handle_button(buttons[focus])
+
+
+def _handle_button(button):
+    match button:
+        case "Exit application":
+            var.quitting = True
+            var.display.clear()
