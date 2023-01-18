@@ -9,8 +9,8 @@ import var
 
 focus = 0
 buttons = [
-    "Restart application",
-    "Reboot machine",
+    "Exit application",
+    "Shutdown machine",
 ]
 
 
@@ -55,9 +55,8 @@ def handle(key):
 
 def _handle_button(button):
     match button:
-        case "Restart application":
+        case "Exit application":
             var.quitting = True
-            os.system("sh start.sh")
-        case "Reboot machine":
+        case "Shutdown machine":
             var.quitting = True
-            os.system("reboot")
+            os.system("shutdown now")

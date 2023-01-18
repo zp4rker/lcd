@@ -3,8 +3,8 @@ from datetime import datetime
 
 from PIL import Image, ImageDraw
 
-import screens.exit
 import screens.home
+import screens.quit
 import var
 
 focus = 0
@@ -13,7 +13,7 @@ buttons = [
     "Button 2",
     "Button 3",
     "Button 4",
-    "Exit application"
+    "Quit"
 ]
 
 
@@ -62,6 +62,6 @@ def handle(key):
 
 def _handle_button(button):
     match button:
-        case "Exit application":
-            var.cur_screen = screens.exit.show
-            var.cur_handle = screens.exit.handle
+        case "Quit":
+            var.cur_screen = screens.quit.show
+            var.cur_handle = screens.quit.handle

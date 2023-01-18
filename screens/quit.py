@@ -3,13 +3,14 @@ from datetime import datetime
 
 from PIL import Image, ImageDraw
 
-import screens.reboot
 import screens.menu
+import screens.reboot
+import screens.shutdown
 import var
 
 focus = 0
 buttons = [
-    "Exit",
+    "Quit",
     "Reboot",
 ]
 
@@ -55,8 +56,9 @@ def handle(key):
 
 def _handle_button(button):
     match button:
-        case "Exit":
-            var.quitting = True
+        case "Quit":
+            var.cur_screen = screens.shutdown.show
+            var.cur_handle = screens.shutdown.handle
         case "Reboot":
             var.cur_screen = screens.reboot.show
             var.cur_handle = screens.reboot.handle
