@@ -3,16 +3,12 @@ from datetime import datetime
 
 from PIL import Image, ImageDraw
 
-import screens.exit
 import var
 
 focus = -1
 buttons = [
-    "Button 1",
-    "Button 2",
-    "Button 3",
-    "Button 4",
-    "Exit application"
+    "Reboot",
+    "Exit",
 ]
 
 
@@ -24,7 +20,7 @@ def show():
     timestr = time.strftime("%a %-d %b %Y | " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
     draw.text((5, 215), text=timestr, font=var.font, fill="WHITE")
 
-    for i in range(5):
+    for i in range(2):
         y1 = 20 + (i * 35)
         y2 = 50 + (i * 35)
 
@@ -53,6 +49,8 @@ def handle(key):
 
 def _handle_button(button):
     match button:
-        case "Exit application":
-            var.cur_screen = screens.exit.show
-            var.cur_handle = screens.exit.handle
+        case "Exit":
+            var.quitting = True
+        case "Reboot":
+            var.quitting = True
+            exec("sh /home/zp4rker/lcd/start.sh")
