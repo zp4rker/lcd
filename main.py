@@ -6,7 +6,7 @@ from PIL import Image
 
 import ST7789
 import listener
-import screens.menu
+import screens.home
 import standby
 import var
 
@@ -30,8 +30,8 @@ listener_thread.start()
 standby_thread = threading.Thread(target=standby.watch, name="Standby Thread")
 standby_thread.start()
 
-var.cur_screen = screens.menu.show
-var.cur_handle = screens.menu.handle
+var.cur_screen = screens.home.show
+var.cur_handle = screens.home.handle
 
 while not var.quitting:
     base = Image.new("RGB", (disp.width, disp.height), "BLACK")

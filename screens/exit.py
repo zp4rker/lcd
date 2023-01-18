@@ -1,3 +1,4 @@
+import os
 import time
 from datetime import datetime
 
@@ -5,10 +6,10 @@ from PIL import Image, ImageDraw
 
 import var
 
-focus = -1
+focus = 0
 buttons = [
-    "Reboot",
     "Exit",
+    "Reboot",
 ]
 
 
@@ -53,4 +54,4 @@ def _handle_button(button):
             var.quitting = True
         case "Reboot":
             var.quitting = True
-            exec("sh /home/zp4rker/lcd/start.sh")
+            os.system("sh start.sh")
