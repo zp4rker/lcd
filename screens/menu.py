@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw
 import screens.exit
 import var
 
-focus = -1
+focus = 0
 buttons = [
     "Button 1",
     "Button 2",
@@ -43,9 +43,13 @@ def handle(key):
         case "KEY_UP":
             if focus > 0:
                 focus -= 1
+            else:
+                focus = 4
         case "KEY_DOWN":
             if focus < 4:
                 focus += 1
+            else:
+                focus = 0
         case "KEY_PRESS":
             if 0 <= focus < 5:
                 _handle_button(focus)
@@ -53,6 +57,6 @@ def handle(key):
 
 def _handle_button(button):
     match button:
-        case 4:
+        case 4:  # Exit application
             var.cur_screen = screens.exit.show
             var.cur_handle = screens.exit.handle
