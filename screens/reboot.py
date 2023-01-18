@@ -58,7 +58,7 @@ def _handle_button(button):
     match button:
         case "Restart application":
             var.quitting = True
-            os.system("python3 main.py")
+            os.system("python3 main.py &")
         case "Update and restart application":
             var.quitting = True
             os.system("sh start.sh")
