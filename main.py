@@ -35,6 +35,7 @@ standby_thread = threading.Thread(target=standby.watch, name="Standby Thread")
 standby_thread.start()
 
 var.cur_screen = screens.menu.show
+var.cur_handle = screens.menu.handle
 
 while not var.quitting:
     base = Image.new("RGB", (disp.width, disp.height), "BLACK")

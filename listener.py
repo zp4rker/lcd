@@ -56,8 +56,8 @@ def listen():
         if key:
             if var.standby:
                 var.standby = False
-                var.last_active = datetime.now()
             else:
                 var.last_press = key
                 var.cur_handle(key)
+            var.last_active = datetime.now()
             time.sleep(0.3)
