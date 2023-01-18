@@ -4,6 +4,7 @@ from datetime import datetime
 from PIL import Image, ImageDraw
 
 import screens.exit
+import screens.home
 import var
 
 focus = 0
@@ -53,6 +54,9 @@ def handle(key):
         case "KEY_PRESS":
             if buttons[focus]:
                 _handle_button(buttons[focus])
+        case "KEY3":
+            var.cur_screen = screens.home.show
+            var.cur_handle = screens.home.handle
 
 
 def _handle_button(button):
