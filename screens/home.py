@@ -1,3 +1,4 @@
+import socket
 import time
 from datetime import datetime
 
@@ -18,12 +19,13 @@ def show():
     draw.text((5, 215), text=timestr, font=var.font, fill="WHITE")
 
     # stats
+    text = f"Hostname: {socket.gethostname()}"
     ip = ""
     for addr in psutil.net_if_addrs()["wlan0"]:
         if addr.netmask.startswith("255"):
             ip = addr.address
             break
-    text = f"IP: {ip}\n"
+    text += f"IP: {ip}\n"
 
     draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 
