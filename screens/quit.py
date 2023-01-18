@@ -11,7 +11,7 @@ import var
 focus = 0
 buttons = [
     "Quit",
-    "Reboot",
+    "Restart",
 ]
 
 
@@ -59,6 +59,6 @@ def _handle_button(button):
         case "Quit":
             var.cur_screen = screens.shutdown.show
             var.cur_handle = screens.shutdown.handle
-        case "Reboot":
+        case "Restart":
             var.cur_screen = screens.reboot.show
             var.cur_handle = screens.reboot.handle
