@@ -6,7 +6,7 @@ from pytube import YouTube
 
 import screens.home
 import screens.quit
-from core import var, util
+from core import var, util, gpiokey
 
 message = ""
 sender = "unknown"
@@ -34,11 +34,12 @@ def show():
     return base
 
 
-def handle(key):
-    match key:
-        case "KEY1":
-            var.cur_screen = screens.home.show
-            var.cur_handle = screens.home.handle
-        case "KEY3":
-            var.cur_screen = screens.home.show
-            var.cur_handle = screens.home.handle
+def handle(key, press_type):
+    if press_type == gpiokey.SHORT_PRESS:
+        match key:
+            case gpiokey.KEY1:
+                var.cur_screen = screens.home.show
+                var.cur_handle = screens.home.handle
+            case gpiokey.KEY3:
+                var.cur_screen = screens.home.show
+                var.cur_handle = screens.home.handle

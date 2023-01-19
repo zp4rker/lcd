@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw
 from gpiozero import CPUTemperature
 
 import screens.menu
-from core import util, var
+from core import util, var, gpiokey
 
 
 def show():
@@ -37,14 +37,15 @@ def show():
     return base
 
 
-def handle(key):
-    match key:
-        case "KEY3":
-            var.cur_screen = screens.menu.show
-            var.cur_handle = screens.menu.handle
-        case "KEY1":
-            var.standby = True
-            var.display.command(0x10)
+def handle(key, press_type):
+    if press_type == gpiokey.SHORT_PRESS:
+        match key:
+            case gpiokey.KEY3:
+                var.cur_screen = screens.menu.show
+                var.cur_handle = screens.menu.handle
+            case gpiokey.KEY1:
+                var.standby = True
+                var.display.command(0x10)
 
 
 def _uptime():
