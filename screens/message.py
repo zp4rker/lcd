@@ -1,15 +1,12 @@
-import threading
 import time
 from datetime import datetime, timedelta
 
-import vlc
 from PIL import Image, ImageDraw
 from pytube import YouTube
 
 import screens.home
 import screens.quit
 from core import var, util
-
 
 message = ""
 sender = "unknown"
@@ -31,17 +28,6 @@ def show():
         text += f"Title: {yt.title}\n"
         text += f"Length: {timedelta(seconds=yt.length)}\n"
         text += f"Author: {yt.author}\n"
-
-        def play_audio():
-            url = yt.streams.get_audio_only().url
-            print(url)
-            vlc_instance = vlc.Instance()
-            player = vlc_instance.media_player_new()
-            media = vlc_instance.media_new(url)
-            player.set_media(media)
-            player.play()
-        audio_thread = threading.Thread(name="Audio Thread", target=play_audio)
-        audio_thread.start()
 
     draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 

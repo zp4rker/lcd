@@ -4,8 +4,8 @@ from datetime import datetime
 import spidev as SPI
 from PIL import Image
 
-from core import ST7789, var
 import screens.home
+from core import ST7789, var
 from threads import standby, listener, sserver
 
 # Raspberry Pi pin configuration:
