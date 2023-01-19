@@ -24,21 +24,26 @@ class Button(object):
     pin = 0
     last_state = 0
     presses = 0
+    delay_count = 0
 
     def __init__(self, pin):
         self.pin = pin
 
     def update(self):
-        if GPIO.input(self.pin):
-            self.presses += 1
+        if self.delay_count > 0:
+            self.delay_count -= 1
         else:
-            presses = self.presses
-            self.presses = 0
-            if presses >= SHORT_PRESS:
-                if presses >= LONG_PRESS:
-                    self.handle(SHORT_PRESS)
-                else:
-                    self.handle(LONG_PRESS)
+            if GPIO.input(self.pin):
+                self.presses += 1
+            else:
+                presses = self.presses
+                self.presses = 0
+                if presses >= SHORT_PRESS:
+                    if presses >= LONG_PRESS:
+                        self.handle(SHORT_PRESS)
+                    else:
+                        self.handle(LONG_PRESS)
+                    self.delay_count = DELAY_COUNT
 
     def handle(self, press_type):
         if var.standby:
