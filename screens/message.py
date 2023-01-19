@@ -24,20 +24,22 @@ def show():
 
     text = f"{sender} said:\n" + message
 
-    if message.startswith("https://youtube.com/watch"):
+    yt = None
+    if message.startswith("https://youtube.com/watch") or message.startswith("https://youtu.be/"):
         yt = YouTube(message)
         text = f"{sender} sent YouTube video:\n"
         text += f"Title: {yt.title}\n"
         text += f"Length: {timedelta(seconds=yt.length)}\n"
         text += f"Author: {yt.author}\n"
 
+    draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
+
+    if yt:
         vlc_instance = vlc.Instance()
         player = vlc_instance.media_player_new()
         media = vlc_instance.media_new(yt.streams.get_audio_only().url)
         player.set_media(media)
         player.play()
-
-    draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 
     return base
 
