@@ -6,7 +6,7 @@ from PIL import Image
 
 from core import ST7789, var
 import screens.home
-from threads import standby, listener
+from threads import standby, listener, sserver
 
 # Raspberry Pi pin configuration:
 RST = 27
@@ -27,6 +27,9 @@ listener_thread.start()
 
 standby_thread = threading.Thread(target=standby.watch, name="Standby Thread")
 standby_thread.start()
+
+sserver_thread = threading.Thread(target=sserver.listen, name="Socket Server Thread")
+sserver_thread.start()
 
 var.cur_screen = screens.home.show
 var.cur_handle = screens.home.handle
