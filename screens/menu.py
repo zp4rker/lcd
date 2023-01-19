@@ -26,14 +26,14 @@ def show():
     draw.text((120, 215), text=timestr, font=var.font, fill="WHITE", align="center", anchor="ma")
 
     for i in range(5):
-        y1 = 10 + (i * 45)
-        y2 = 50 + (i * 45)
+        y1 = 15 + (i * 40)
+        y2 = 45 + (i * 40)
 
         fill = "WHITE" if focus == i else "#353739"
         outline = "BLACK" if focus == i else "WHITE"
 
-        draw.rectangle([20, y1, 220, y2], fill=fill, outline=outline)
-        draw.text((120, y1 + 9), text=buttons[i], font=var.font, fill=outline, align="center", anchor="ma")
+        draw.rectangle([10, y1, 230, y2], fill=fill, outline=outline)
+        draw.text((120, y1 + 6.5), text=buttons[i], font=var.font, fill=outline, align="center", anchor="ma")
 
     return base
 
