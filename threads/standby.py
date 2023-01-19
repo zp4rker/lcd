@@ -17,5 +17,5 @@ def watch():
 
         if not var.standby:
             var.standby = True
-            var.display.clear()
+            var.display.command(0x10)
             time.sleep(15)
