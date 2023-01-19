@@ -32,7 +32,7 @@ def show():
         fill = "WHITE" if focus == i else "#353739"
         outline = "BLACK" if focus == i else "WHITE"
 
-        draw.rounded_rectangle([10, y1, 230, y2], fill=fill, outline=outline, radius=3)
+        draw.rounded_rectangle([10, y1, 230, y2], fill=fill, outline=outline, radius=5)
         draw.text((120, y1 + 6.5), text=buttons[i], font=var.font, fill=outline, align="center", anchor="ma")
 
     return base
