@@ -2,6 +2,7 @@ import time
 from datetime import datetime
 
 from PIL import Image, ImageDraw
+from pytube import YouTube
 
 import screens.home
 import screens.quit
@@ -21,6 +22,13 @@ def show():
     draw.text((120, 215), text=timestr, font=var.font, fill="WHITE", align="center", anchor="ma")
 
     text = f"{sender} said:\n" + message
+
+    if message.startswith("https://youtube.com/watch"):
+        yt = YouTube(message)
+        text = f"{sender} sent YouTube video:\n"
+        text += f"Title: {yt.title}\n"
+        text += f"Length: {yt.length}\n"
+        text += f"Author: {yt.author}\n"
 
     draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 
