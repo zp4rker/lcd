@@ -26,8 +26,9 @@ def show():
             ip = addr.address
             break
     text += f"IP: {ip}\n"
-    text += f"Memory used: {psutil.virtual_memory().percent}%\n"
-    text += f"Storage used: {psutil.disk_usage('/').percent}%\n"
+    text += f"CPU: {psutil.cpu_percent()}%\n"
+    text += f"Memory: {psutil.virtual_memory().percent}%\n"
+    text += f"Storage: {psutil.disk_usage('/').percent}%\n"
 
     draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 
