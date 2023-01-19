@@ -27,7 +27,7 @@ def show():
             ip = addr.address
             break
     text += f"IP: {ip}\n"
-    text += f"Uptime: {_uptime()}"
+    text += f"Uptime: {_uptime()}\n"
     cpu = CPUTemperature()
     text += f"CPU: {psutil.cpu_percent()}% ({round(cpu.temperature, 1)}C)\n"
     text += f"Memory: {psutil.virtual_memory().percent}%\n"
@@ -49,4 +49,4 @@ def _uptime():
     raw = datetime.now() - datetime.fromtimestamp(psutil.boot_time())
     td = timedelta(seconds=raw.seconds)
     comps = str(td).split(":")
-    return f"{comps[0]} hours, {comps[1]} minutes, {comps[2]} seconds"
+    return f"{comps[0]}h, {comps[1]}m, {comps[2]}s"
