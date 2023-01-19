@@ -28,7 +28,7 @@ def show():
             break
     text += f"IP: {ip}\n"
     cpu = CPUTemperature()
-    text += f"CPU: {psutil.cpu_percent()}% ({cpu.temperature}C)\n"
+    text += f"CPU: {psutil.cpu_percent()}% ({round(cpu.temperature, 1)}C)\n"
     text += f"Memory: {psutil.virtual_memory().percent}%\n"
     text += f"Storage: {psutil.disk_usage('/').percent}%\n"
 
