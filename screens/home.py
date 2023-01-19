@@ -43,6 +43,8 @@ def handle(key):
         case "KEY3":
             var.cur_screen = screens.menu.show
             var.cur_handle = screens.menu.handle
+        case "KEY1":
+            var.standby = True
 
 
 def _uptime():
