@@ -23,7 +23,7 @@ def show():
 
     draw.line([(0, 210), (240, 210)], fill="WHITE", width=1)
     timestr = time.strftime("%a %-d %b %Y | " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
-    draw.text((5, 215), text=timestr, font=var.font, fill="WHITE")
+    draw.text((120, 215), text=timestr, font=var.font, fill="WHITE", align="center", anchor="ma")
 
     for i in range(3):
         y1 = 20 + (i * 35)
