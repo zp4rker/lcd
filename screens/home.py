@@ -4,6 +4,7 @@ from datetime import datetime
 
 import psutil
 from PIL import Image, ImageDraw
+from gpiozero import CPUTemperature
 
 import screens.menu
 import util
@@ -26,7 +27,8 @@ def show():
             ip = addr.address
             break
     text += f"IP: {ip}\n"
-    text += f"CPU: {psutil.cpu_percent()}%\n"
+    cpu = CPUTemperature()
+    text += f"CPU: {psutil.cpu_percent()}% ({cpu.temperature}C)\n"
     text += f"Memory: {psutil.virtual_memory().percent}%\n"
     text += f"Storage: {psutil.disk_usage('/').percent}%\n"
 
