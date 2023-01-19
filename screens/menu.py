@@ -26,8 +26,8 @@ def show():
     draw.text((120, 215), text=timestr, font=var.font, fill="WHITE", align="center", anchor="ma")
 
     for i in range(5):
-        y1 = 5 + (i * 40)
-        y2 = 45 + (i * 40)
+        y1 = 7.5 + (i * 40)
+        y2 = 42.5 + (i * 40)
 
         fill = "WHITE" if focus == i else "#353739"
         outline = "BLACK" if focus == i else "WHITE"
