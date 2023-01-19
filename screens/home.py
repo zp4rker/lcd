@@ -1,6 +1,6 @@
 import socket
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import psutil
 from PIL import Image, ImageDraw
@@ -27,6 +27,7 @@ def show():
             ip = addr.address
             break
     text += f"IP: {ip}\n"
+    text += f"Uptime: {_uptime()}"
     cpu = CPUTemperature()
     text += f"CPU: {psutil.cpu_percent()}% ({round(cpu.temperature, 1)}C)\n"
     text += f"Memory: {psutil.virtual_memory().percent}%\n"
@@ -42,3 +43,10 @@ def handle(key):
         case "KEY3":
             var.cur_screen = screens.menu.show
             var.cur_handle = screens.menu.handle
+
+
+def _uptime():
+    raw = psutil.boot_time()
+    td = timedelta(seconds=raw)
+    comps = str(td).split(":")
+    return f"{comps[0]} hours, {comps[1]} minutes, {comps[2]} seconds"
