@@ -16,7 +16,7 @@ def show():
     draw = ImageDraw.Draw(base)
 
     draw.line([(0, 210), (240, 210)], fill="WHITE", width=1)
-    timestr = time.strftime("%a %-d %b %Y | " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
+    timestr = time.strftime("%a %-d %b %Y " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
     draw.text((120, 215), text=timestr, font=var.font, fill="WHITE", align="center", anchor="ma")
 
     # stats

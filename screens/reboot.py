@@ -11,9 +11,9 @@ import var
 
 focus = 0
 buttons = [
-    "Restart application",
-    "Update application",
-    "Reboot machine",
+    "Restart app",
+    "Update app",
+    "Reboot",
 ]
 
 
@@ -22,7 +22,7 @@ def show():
     draw = ImageDraw.Draw(base)
 
     draw.line([(0, 210), (240, 210)], fill="WHITE", width=1)
-    timestr = time.strftime("%a %-d %b %Y | " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
+    timestr = time.strftime("%a %-d %b %Y " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
     draw.text((120, 215), text=timestr, font=var.font, fill="WHITE", align="center", anchor="ma")
 
     for i in range(3):
@@ -33,7 +33,7 @@ def show():
         outline = "BLACK" if focus == i else "WHITE"
 
         draw.rectangle([20, y1, 220, y2], fill=fill, outline=outline)
-        draw.text((120, y1 + 5), text=buttons[i], font=var.font, fill=outline, align="center", anchor="ma")
+        draw.text((120, y1 + 4), text=buttons[i], font=var.font, fill=outline, align="center", anchor="ma")
 
     return base
 
@@ -63,14 +63,14 @@ def handle(key):
 
 def _handle_button(button):
     match button:
-        case "Restart application":
+        case "Restart app":
             var.quitting = True
             os.system("python3 main.py &")
-        case "Update application":
+        case "Update app":
             var.quitting = True
             repo = git.Repo("./")
             repo.remotes.origin.pull()
             os.system("python3 main.py &")
-        case "Reboot machine":
+        case "Reboot":
             var.quitting = True
             os.system("reboot")

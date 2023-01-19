@@ -4,7 +4,7 @@ display = None
 cur_screen = None
 cur_handle = None
 
-font = ImageFont.truetype("JetBrainsMono.ttf", size=16)
+font = ImageFont.truetype("JetBrainsMono.ttf", size=17)
 
 last_press = None
 quitting = False

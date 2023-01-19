@@ -10,8 +10,8 @@ import var
 
 focus = 0
 buttons = [
-    "Exit application",
-    "Shutdown machine",
+    "Exit app",
+    "Shutdown",
 ]
 
 
@@ -20,7 +20,7 @@ def show():
     draw = ImageDraw.Draw(base)
 
     draw.line([(0, 210), (240, 210)], fill="WHITE", width=1)
-    timestr = time.strftime("%a %-d %b %Y | " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
+    timestr = time.strftime("%a %-d %b %Y " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
     draw.text((120, 215), text=timestr, font=var.font, fill="WHITE", align="center", anchor="ma")
 
     for i in range(2):
@@ -31,7 +31,7 @@ def show():
         outline = "BLACK" if focus == i else "WHITE"
 
         draw.rectangle([20, y1, 220, y2], fill=fill, outline=outline)
-        draw.text((120, y1 + 5), text=buttons[i], font=var.font, fill=outline, align="center", anchor="ma")
+        draw.text((120, y1 + 4), text=buttons[i], font=var.font, fill=outline, align="center", anchor="ma")
 
     return base
 
@@ -61,8 +61,8 @@ def handle(key):
 
 def _handle_button(button):
     match button:
-        case "Exit application":
+        case "Exit app":
             var.quitting = True
-        case "Shutdown machine":
+        case "Shutdown":
             var.quitting = True
             os.system("shutdown now")
