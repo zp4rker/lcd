@@ -46,7 +46,7 @@ def handle(key):
 
 
 def _uptime():
-    raw = psutil.boot_time()
+    raw = datetime.now().second - psutil.boot_time()
     td = timedelta(seconds=raw)
     comps = str(td).split(":")
     return f"{comps[0]} hours, {comps[1]} minutes, {comps[2]} seconds"
