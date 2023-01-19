@@ -4,11 +4,9 @@ from datetime import datetime
 import spidev as SPI
 from PIL import Image
 
-import ST7789
-import listener
+from core import ST7789, var
 import screens.home
-import standby
-import var
+from threads import standby, listener
 
 # Raspberry Pi pin configuration:
 RST = 27

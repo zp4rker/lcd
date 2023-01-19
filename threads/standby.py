@@ -1,7 +1,7 @@
 import time
 from datetime import datetime
 
-import var
+from core import var
 
 
 def watch():

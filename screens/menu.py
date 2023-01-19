@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw
 
 import screens.home
 import screens.quit
-import var
+from core import var
 
 focus = 0
 buttons = [

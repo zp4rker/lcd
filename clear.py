@@ -1,7 +1,7 @@
 import spidev as SPI
 from PIL import Image
 
-import ST7789
+from core import ST7789
 
 # Raspberry Pi pin configuration:
 RST = 27

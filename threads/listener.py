@@ -3,7 +3,7 @@ from datetime import datetime
 
 import RPi.GPIO as GPIO
 
-import var
+from core import var
 
 KEY_UP_PIN = 6
 KEY_DOWN_PIN = 19

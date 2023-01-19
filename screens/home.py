@@ -7,8 +7,7 @@ from PIL import Image, ImageDraw
 from gpiozero import CPUTemperature
 
 import screens.menu
-import util
-import var
+from core import util, var
 
 
 def show():

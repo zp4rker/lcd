@@ -7,7 +7,7 @@ import screens.home
 import screens.menu
 import screens.reboot
 import screens.shutdown
-import var
+from core import var
 
 focus = 0
 buttons = [
