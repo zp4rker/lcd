@@ -9,6 +9,7 @@ from core import var, util
 
 
 message = ""
+sender = "unknown"
 
 
 def show():
@@ -19,7 +20,9 @@ def show():
     timestr = time.strftime("%a %-d %b %Y " + ("%H:%M" if var.blink else "%H %M")).format(datetime.now())
     draw.text((120, 215), text=timestr, font=var.font, fill="WHITE", align="center", anchor="ma")
 
-    draw.multiline_text((10, 10), text=util.wrap_lines(message, var.font, 220), font=var.font, fill="WHITE")
+    text = f"{sender} said:\n" + message
+
+    draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 
     return base
 

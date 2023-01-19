@@ -14,17 +14,15 @@ def listen():
             try:
                 conn, addr = sock.accept()
                 with conn:
-                    text = f"{addr[0]} said:\n"
-
+                    screens.message.sender = addr[0]
                     payload = ""
                     while True:
                         data = conn.recv(1024)
                         if not data:
                             break
                         payload += data.decode()
-                    text += payload
 
-                    screens.message.message = text
+                    screens.message.message = payload
                     var.cur_screen = screens.message.show
                     var.cur_handle = screens.message.handle
                     var.standby = False
