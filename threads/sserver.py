@@ -13,9 +13,8 @@ def listen():
         while not var.quitting:
             try:
                 conn, addr = sock.accept()
-                ip, port = sock.getpeername()
                 with conn:
-                    text = f"Message from {ip}:\n"
+                    text = f"{addr[0]} said:\n"
 
                     payload = ""
                     while True:
