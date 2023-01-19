@@ -49,4 +49,4 @@ def _uptime():
     raw = datetime.now() - datetime.fromtimestamp(psutil.boot_time())
     td = timedelta(seconds=raw.seconds)
     comps = str(td).split(":")
-    return f"{comps[0]}h, {comps[1]}m, {comps[2]}s"
+    return f"{comps[0]}h, {comps[1]}m"
