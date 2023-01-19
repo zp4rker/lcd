@@ -24,10 +24,9 @@ class Button(object):
     pin = 0
     last_state = 0
     presses = 0
-    delay_count = 50
+    delay_count = 0
 
     def __init__(self, pin):
-        GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         self.pin = pin
 
     def update(self):
