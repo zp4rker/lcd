@@ -49,6 +49,7 @@ def handle(key):
         case "KEY_PRESS":
             if buttons[focus]:
                 _handle_button(buttons[focus])
+                focus = 0
         case "KEY1":
             var.cur_screen = screens.menu.show
             var.cur_handle = screens.menu.handle
