@@ -56,6 +56,7 @@ def listen():
         if key:
             if var.standby:
                 var.standby = False
+                var.display.command(0x11)
             else:
                 var.last_press = key
                 var.cur_handle(key)

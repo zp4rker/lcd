@@ -38,7 +38,6 @@ while not var.quitting:
     base = Image.new("RGB", (disp.width, disp.height), "BLACK")
 
     if var.standby:
-        disp.ShowImage(base, 0, 0)
         continue
 
     if datetime.now().second != second:

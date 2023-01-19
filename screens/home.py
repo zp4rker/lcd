@@ -44,6 +44,7 @@ def handle(key):
             var.cur_handle = screens.menu.handle
         case "KEY1":
             var.standby = True
+            var.display.command(0x10)
 
 
 def _uptime():
