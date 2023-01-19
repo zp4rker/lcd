@@ -1,6 +1,7 @@
 import time
 from datetime import datetime, timedelta
 
+import vlc
 from PIL import Image, ImageDraw
 from pytube import YouTube
 
@@ -29,6 +30,12 @@ def show():
         text += f"Title: {yt.title}\n"
         text += f"Length: {timedelta(seconds=yt.length)}\n"
         text += f"Author: {yt.author}\n"
+
+    vlc_instance = vlc.Instance()
+    player = vlc_instance.media_player_new()
+    media = vlc_instance.media_new(message)
+    player.set_media(media)
+    player.play()
 
     draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 
