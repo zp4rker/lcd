@@ -7,14 +7,15 @@ from core import var
 
 def listen():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-        sock.bind(("127.0.0.1", 29718))
+        sock.bind(("0.0.0.0", 29718))
         sock.settimeout(0.5)
         sock.listen()
         while not var.quitting:
             try:
                 conn, addr = sock.accept()
+                ip, port = sock.getpeername()
                 with conn:
-                    text = f"Received message from {addr}:\n"
+                    text = f"Message from {ip}:\n"
 
                     payload = ""
                     while True:
