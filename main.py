@@ -1,4 +1,3 @@
-import threading
 from datetime import datetime
 
 import spidev as SPI
@@ -6,7 +5,7 @@ from PIL import Image
 
 import screens.home
 from core import ST7789, var
-from threads import standby, listener, sserver
+from threads import standby, listener, message
 
 # Raspberry Pi pin configuration:
 RST = 27
@@ -22,14 +21,9 @@ var.display = disp
 
 second = datetime.now().second
 
-listener_thread = threading.Thread(target=listener.listen, name="Listener Thread")
-listener_thread.start()
-
-standby_thread = threading.Thread(target=standby.watch, name="Standby Thread")
-standby_thread.start()
-
-sserver_thread = threading.Thread(target=sserver.listen, name="Socket Server Thread")
-sserver_thread.start()
+listener.Listener().start()
+standby.WatchDog().start()
+message.Server().start()
 
 var.cur_screen = screens.home.show
 var.cur_handle = screens.home.handle

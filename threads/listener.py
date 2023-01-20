@@ -1,3 +1,4 @@
+import threading
 import time
 from datetime import datetime
 
@@ -16,49 +17,50 @@ KEY2_PIN = 20
 KEY3_PIN = 16
 
 
-def listen():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(KEY_UP_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(KEY_RIGHT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(KEY_DOWN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(KEY_LEFT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(KEY_PRESS_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(KEY1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(KEY2_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(KEY3_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+class Listener(threading.Thread):
+    def run(self) -> None:
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(KEY_UP_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(KEY_RIGHT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(KEY_DOWN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(KEY_LEFT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(KEY_PRESS_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(KEY1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(KEY2_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(KEY3_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-    while not var.quitting:
-        key = None
-        if not GPIO.input(KEY_UP_PIN):
-            key = "KEY_UP"
+        while not var.quitting:
+            key = None
+            if not GPIO.input(KEY_UP_PIN):
+                key = "KEY_UP"
 
-        if not GPIO.input(KEY_RIGHT_PIN):
-            key = "KEY_RIGHT"
+            if not GPIO.input(KEY_RIGHT_PIN):
+                key = "KEY_RIGHT"
 
-        if not GPIO.input(KEY_DOWN_PIN):
-            key = "KEY_DOWN"
+            if not GPIO.input(KEY_DOWN_PIN):
+                key = "KEY_DOWN"
 
-        if not GPIO.input(KEY_LEFT_PIN):
-            key = "KEY_LEFT"
+            if not GPIO.input(KEY_LEFT_PIN):
+                key = "KEY_LEFT"
 
-        if not GPIO.input(KEY_PRESS_PIN):
-            key = "KEY_PRESS"
+            if not GPIO.input(KEY_PRESS_PIN):
+                key = "KEY_PRESS"
 
-        if not GPIO.input(KEY1_PIN):
-            key = "KEY1"
+            if not GPIO.input(KEY1_PIN):
+                key = "KEY1"
 
-        if not GPIO.input(KEY2_PIN):
-            key = "KEY2"
+            if not GPIO.input(KEY2_PIN):
+                key = "KEY2"
 
-        if not GPIO.input(KEY3_PIN):
-            key = "KEY3"
+            if not GPIO.input(KEY3_PIN):
+                key = "KEY3"
 
-        if key:
-            if var.standby:
-                var.standby = False
-                var.display.command(0x11)
-            else:
-                var.last_press = key
-                var.cur_handle(key)
-            var.last_active = datetime.now()
-            time.sleep(0.3)
+            if key:
+                if var.standby:
+                    var.standby = False
+                    var.display.command(0x11)
+                else:
+                    var.last_press = key
+                    var.cur_handle(key)
+                var.last_active = datetime.now()
+                time.sleep(0.3)
