@@ -28,7 +28,6 @@ def show():
     if message.startswith("https://youtube.com/watch") or message.startswith("https://youtu.be/"):
         text = f"{sender} sent a YouTube video\n"
         button = "View info"
-        pass
 
     draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 

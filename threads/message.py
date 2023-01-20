@@ -29,6 +29,7 @@ class Server(threading.Thread):
                         var.cur_screen = screens.message.show
                         var.cur_handle = screens.message.handle
                         var.standby = False
+                        var.display.command(0x11)
                         var.last_active = datetime.now()
                 except TimeoutError:
                     pass
