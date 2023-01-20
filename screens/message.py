@@ -27,7 +27,7 @@ def show():
 
     if message.startswith("https://youtube.com/watch") or message.startswith("https://youtu.be/"):
         text = f"{sender} sent a YouTube video\n"
-        button = "View info"
+        button = "Video info"
 
     draw.multiline_text((10, 10), text=util.wrap_lines(text, var.font, 220), font=var.font, fill="WHITE")
 
@@ -48,6 +48,7 @@ def handle(key):
             var.cur_screen = screens.home.show
             var.cur_handle = screens.home.handle
         case "KEY_PRESS":
-            screens.youtube.url = message
-            var.cur_screen = screens.youtube.show
-            var.cur_handle = screens.youtube.handle
+            if button == "Video info":
+                screens.youtube.url = message
+                var.cur_screen = screens.youtube.show
+                var.cur_handle = screens.youtube.handle
