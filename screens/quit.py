@@ -7,7 +7,7 @@ import screens.home
 import screens.menu
 import screens.reboot
 import screens.shutdown
-from core import var
+from core import var, gpiokey
 
 focus = 0
 buttons = [
@@ -37,27 +37,28 @@ def show():
     return base
 
 
-def handle(key):
+def handle(key, press_type):
     global focus
-    match key:
-        case "KEY_UP":
-            if focus > 0:
-                focus -= 1
-        case "KEY_DOWN":
-            if focus < 4:
-                focus += 1
-        case "KEY_PRESS":
-            if buttons[focus]:
-                _handle_button(buttons[focus])
+    if press_type == gpiokey.SHORT_PRESS:
+        match key:
+            case gpiokey.KEY_UP:
+                if focus > 0:
+                    focus -= 1
+            case gpiokey.KEY_DOWN:
+                if focus < 4:
+                    focus += 1
+            case gpiokey.KEY_PRESS:
+                if buttons[focus]:
+                    _handle_button(buttons[focus])
+                    focus = 0
+            case gpiokey.KEY1:
+                var.cur_screen = screens.menu.show
+                var.cur_handle = screens.menu.handle
                 focus = 0
-        case "KEY1":
-            var.cur_screen = screens.menu.show
-            var.cur_handle = screens.menu.handle
-            focus = 0
-        case "KEY3":
-            var.cur_screen = screens.home.show
-            var.cur_handle = screens.home.handle
-            focus = 0
+            case gpiokey.KEY3:
+                var.cur_screen = screens.home.show
+                var.cur_handle = screens.home.handle
+                focus = 0
 
 
 def _handle_button(button):

@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw
 import screens.home
 import screens.quit
 import screens.youtube
-from core import var, util
+from core import var, util, gpiokey
 
 message = ""
 sender = "unknown"
@@ -39,16 +39,17 @@ def show():
     return base
 
 
-def handle(key):
-    match key:
-        case "KEY1":
-            var.cur_screen = screens.home.show
-            var.cur_handle = screens.home.handle
-        case "KEY3":
-            var.cur_screen = screens.home.show
-            var.cur_handle = screens.home.handle
-        case "KEY_PRESS":
-            if button == "Video info":
-                screens.youtube.url = message
-                var.cur_screen = screens.youtube.show
-                var.cur_handle = screens.youtube.handle
+def handle(key, press_type):
+    if press_type == gpiokey.SHORT_PRESS:
+        match key:
+            case gpiokey.KEY1:
+                var.cur_screen = screens.home.show
+                var.cur_handle = screens.home.handle
+            case gpiokey.KEY3:
+                var.cur_screen = screens.home.show
+                var.cur_handle = screens.home.handle
+            case gpiokey.KEY_PRESS:
+                if button == "Video info":
+                    screens.youtube.url = message
+                    var.cur_screen = screens.youtube.show
+                    var.cur_handle = screens.youtube.handle

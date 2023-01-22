@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from PIL import ImageFont
 
 display = None
@@ -6,8 +8,7 @@ cur_handle = None
 
 font = ImageFont.truetype("JetBrainsMono.ttf", size=17)
 
-last_press = None
 quitting = False
 standby = False
-last_active = None
+last_active = datetime.now()
 blink = False
