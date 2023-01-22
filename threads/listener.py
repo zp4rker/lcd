@@ -1,4 +1,5 @@
 import threading
+import time
 
 import RPi.GPIO as GPIO
 
@@ -31,3 +32,4 @@ class Listener(threading.Thread):
         while not var.quitting:
             for key in keys:
                 key.update()
+            time.sleep(0.01)
