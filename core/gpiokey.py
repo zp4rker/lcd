@@ -26,6 +26,9 @@ class Key(object):
         self.pin = pin
 
     def update(self):
+        if not var.cur_handle:
+            return
+
         if GPIO.input(self.pin):
             if self.presses > 0:
                 if var.standby:
@@ -37,5 +40,5 @@ class Key(object):
                     var.cur_handle(self.pin, SHORT_PRESS)
                 self.presses = 0
                 var.last_active = datetime.now()
-            else:
-                self.presses += 1
+        else:
+            self.presses += 1
