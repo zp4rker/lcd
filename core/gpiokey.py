@@ -35,8 +35,10 @@ class Key(object):
                     var.standby = False
                     var.display.command(0x11)
                 elif self.presses > SHORT_PRESS:
+                    print(f"LONG_PRESS - {self.pin}")
                     var.cur_handle(self.pin, LONG_PRESS)
                 else:
+                    print(f"SHORT_PRESS - {self.pin}")
                     var.cur_handle(self.pin, SHORT_PRESS)
                 self.presses = 0
                 var.last_active = datetime.now()
