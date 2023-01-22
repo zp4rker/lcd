@@ -14,8 +14,8 @@ KEY1 = 21
 KEY2 = 20
 KEY3 = 16
 
-SHORT_PRESS = 100
-LONG_PRESS = 101
+SHORT_PRESS = 99
+LONG_PRESS = 100
 
 
 class Key(object):
@@ -34,11 +34,11 @@ class Key(object):
                 if var.standby:
                     var.standby = False
                     var.display.command(0x11)
-                elif self.presses > SHORT_PRESS:
-                    var.cur_handle(self.pin, LONG_PRESS)
-                else:
+                elif self.presses < LONG_PRESS:
                     var.cur_handle(self.pin, SHORT_PRESS)
                 self.presses = 0
                 var.last_active = datetime.now()
         else:
             self.presses += 1
+            if self.presses == LONG_PRESS:
+                var.cur_handle(self.pin, LONG_PRESS)
