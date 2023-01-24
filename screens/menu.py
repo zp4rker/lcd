@@ -69,5 +69,7 @@ def _handle_button(button):
             var.cur_screen = screens.quit.show
             var.cur_handle = screens.quit.handle
         case "Splash":
+            screens.splash.last_frame = datetime.now()
+            screens.splash.frame = 0
             var.cur_screen = screens.splash.show
             var.cur_handle = screens.splash.handle
