@@ -18,7 +18,11 @@ keys = [
 
 
 class Listener(threading.Thread):
+    started = False
+
     def run(self) -> None:
+        self.started = True
+
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(gpiokey.KEY_UP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(gpiokey.KEY_RIGHT, GPIO.IN, pull_up_down=GPIO.PUD_UP)

@@ -6,7 +6,11 @@ from core import var
 
 
 class WatchDog(threading.Thread):
+    started = False
+
     def run(self) -> None:
+        self.started = True
+
         if not var.last_active:
             var.last_active = datetime.now()
 

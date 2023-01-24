@@ -3,9 +3,9 @@ from datetime import datetime
 import spidev as SPI
 from PIL import Image
 
+import screens.home
 import screens.splash
-from core import ST7789, var
-from threads import standby, listener, message
+from core import ST7789, var, threadhandler
 
 # Raspberry Pi pin configuration:
 RST = 27
@@ -21,15 +21,15 @@ var.display = disp
 
 second = datetime.now().second
 
-listener.Listener().start()
-standby.WatchDog().start()
-message.Server().start()
-
-var.cur_screen = screens.splash.show
-var.cur_handle = screens.splash.handle
+var.cur_screen = screens.home.show
+var.cur_handle = screens.home.handle
 
 while not var.quitting:
-    base = Image.new("RGB", (disp.width, disp.height), "BLACK")
+    if screens.splash.frame < 55:
+        disp.ShowImage(screens.splash.show(), 0, 0)
+        continue
+
+    threadhandler.start_threads()
 
     if var.standby:
         continue

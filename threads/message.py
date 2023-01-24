@@ -8,7 +8,11 @@ from core import var
 
 
 class Server(threading.Thread):
+    started = False
+
     def run(self) -> None:
+        self.started = True
+
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
             sock.bind(("0.0.0.0", 29718))
             sock.settimeout(0.5)
