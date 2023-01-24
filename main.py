@@ -3,7 +3,7 @@ from datetime import datetime
 import spidev as SPI
 from PIL import Image
 
-import screens.home
+import screens.splash
 from core import ST7789, var
 from threads import standby, listener, message
 
@@ -25,8 +25,8 @@ listener.Listener().start()
 standby.WatchDog().start()
 message.Server().start()
 
-var.cur_screen = screens.home.show
-var.cur_handle = screens.home.handle
+var.cur_screen = screens.splash.show
+var.cur_handle = screens.splash.handle
 
 while not var.quitting:
     base = Image.new("RGB", (disp.width, disp.height), "BLACK")
