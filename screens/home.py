@@ -45,7 +45,7 @@ def handle(key, press_type):
                 var.cur_handle = screens.menu.handle
             case gpiokey.KEY1:
                 var.standby = True
-                var.display.command(0x10)
+                var.display.command(0x28)
 
 
 def _uptime():

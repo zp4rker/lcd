@@ -33,7 +33,7 @@ class Key(object):
             if self.presses > 0:
                 if var.standby:
                     var.standby = False
-                    var.display.command(0x11)
+                    var.display.command(0x29)
                 elif self.presses < LONG_PRESS:
                     var.cur_handle(self.pin, SHORT_PRESS)
                 self.presses = 0

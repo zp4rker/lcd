@@ -23,5 +23,5 @@ class WatchDog(threading.Thread):
 
             if not var.standby:
                 var.standby = True
-                var.display.command(0x10)
+                var.display.command(0x28)
                 time.sleep(15)
