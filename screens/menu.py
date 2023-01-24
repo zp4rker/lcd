@@ -5,11 +5,12 @@ from PIL import Image, ImageDraw
 
 import screens.home
 import screens.quit
+import screens.splash
 from core import var, gpiokey
 
 focus = 0
 buttons = [
-    "Button 1",
+    "Splash",
     "Button 2",
     "Button 3",
     "Button 4",
@@ -67,3 +68,6 @@ def _handle_button(button):
         case "Quit":
             var.cur_screen = screens.quit.show
             var.cur_handle = screens.quit.handle
+        case "Splash":
+            var.cur_screen = screens.splash.show
+            var.cur_handle = screens.splash.handle
